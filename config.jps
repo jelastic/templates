@@ -1,0 +1,28 @@
+type: update
+name: Configs applying
+
+globals:
+  TARGET_GROUP: ${settings.targetGroup}
+  TARGET_NODES: ${settings.targetNodes}
+  OPTIMIZATION: ${settings.optimization}
+  CONFIGS_PATH: https://github.com/jelastic/templates
+  
+onInstall:
+  - script: |
+      var targetGroup = '${globals.TARGET_GROUP}';
+      return { 
+        result: 0, 
+        nodeType: '${nodes.' + targetGroup + '.nodeType}',
+        tag: '${nodes.' + targetGroup + '.version}'  
+      };
+  - set:
+      nodeType: ${response.nodeType}
+      tag: ${response.tag}
+      
+  - cmd[${globals.TARGET_NODES}]: |-
+      rm -rf /tmp/templates;
+      wget '${globals.CONFIGS_PATH}/archive/master.zip' -O /tmp/master.zip;
+      unzip /tmp/master.zip templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* -d /tmp/templates;
+      rsync -azP /tmp/templates/templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* /;
+      jem service restart;
+    user: root
