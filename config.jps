@@ -23,6 +23,6 @@ onInstall:
       rm -rf /tmp/templates;
       wget '${globals.CONFIGS_PATH}/archive/master.zip' -O /tmp/master.zip;
       unzip /tmp/master.zip templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* -d /tmp/templates;
-      rsync -azP /tmp/templates/templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* / > /dev/null 2>&1;;
+      rsync -azP /tmp/templates/templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* / > /dev/null 2>&1;
       sudo jem service restart;
       
