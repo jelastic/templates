@@ -5,7 +5,7 @@ globals:
   TARGET_GROUP: ${settings.targetGroup}
   TARGET_NODES: ${settings.targetNodes}
   OPTIMIZATION: ${settings.optimization}
-  CONFIGS_PATH: https://github.com/sych74/templates
+  CONFIGS_PATH: https://github.com/jelastic/templates
   
 onInstall:
   - script: |
