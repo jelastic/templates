@@ -22,7 +22,7 @@ onInstall:
   - cmd[${globals.TARGET_NODES}]: |-
       rm -rf /tmp/templates;
       wget '${globals.CONFIGS_PATH}/archive/master.zip' -O /tmp/master.zip;
-      unzip /tmp/master.zip templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* -d /tmp/templates;
-      rsync -azP /tmp/templates/templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* /;
-      jem service restart;
-    user: root
+      unzip /tmp/master.zip templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* -d /tmp/templates >> /var/log/run.log;
+      rsync -azP /tmp/templates/templates-master/${this.nodeType}/${this.tag}/${globals.OPTIMIZATION}/* / >> /var/log/run.log 2>&1;
+      sudo jem service restart;
+      
