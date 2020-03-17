@@ -5,7 +5,7 @@ import std;
 import directors;
 
 sub vcl_init {
-        new myclust = directors.hash();
+        new myclust = directors.round_robin();
 }
 
 acl purge {
