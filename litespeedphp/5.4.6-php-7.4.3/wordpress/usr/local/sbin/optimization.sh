@@ -14,4 +14,8 @@ if [ -e ${DEFAULT_LSWS_CONFIG} ]; then
   /usr/bin/xmlstarlet $ED_CMD -u "httpServerConfig/tuning/enableGzipCompress" -v "0" ${DEFAULT_LSWS_CONFIG} 2>&1;
 fi
 
+if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
+  /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+fi
+
 sudo service lsws reload
