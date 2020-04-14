@@ -6,10 +6,6 @@ ED_CMD="ed --inplace"
 
 cp -f ${LSLB_CONF} ${LSLB_CONF}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
 
-# Change docroot for security
-# https://devdocs.magento.com/guides/v2.3/install-gde/tutorials/change-docroot-to-pub.html
-/usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${VH_CONF}" 2>/dev/null;
-
 #Enable LiteMage
 /usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/cache/storage/litemage" -v "1" "${VH_CONF}" 2>/dev/null;
 

@@ -16,6 +16,10 @@ fi
 
 if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
   /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  
+  # Change docroot for security
+  # https://devdocs.magento.com/guides/v2.3/install-gde/tutorials/change-docroot-to-pub.html
+  /usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
 fi
 
 sudo service lsws reload
