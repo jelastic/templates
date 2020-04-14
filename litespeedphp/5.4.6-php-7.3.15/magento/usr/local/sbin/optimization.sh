@@ -22,4 +22,4 @@ if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
   /usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
 fi
 
-sudo service lsws reload
+sudo service lsws restart
