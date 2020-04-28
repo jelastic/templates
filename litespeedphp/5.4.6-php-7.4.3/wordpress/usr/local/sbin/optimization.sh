@@ -15,7 +15,7 @@ if [ -e ${DEFAULT_LSWS_CONFIG} ]; then
 fi
 
 if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
-  /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/storage/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
 fi
 
 sudo service lsws reload
