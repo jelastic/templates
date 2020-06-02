@@ -1,22 +1,7 @@
-### LiteSpeed ADC WordPress optimization
-#JE-00001
 loadBalancerConfig/loadBalancerList/loadBalancer/strategy=3
-
-#JE-00002
 loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/maxConns=150
-
-#JE-00003
 loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/retryTimeout=5
-
-#JE-00004
 loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/pingInterval=1
-
-#JE-00005
 virtualHostConfig/cache/cachePolicy/checkPublicCache=1
-
-#JE-00006
 virtualHostConfig/cache/cachePolicy/checkPrivateCache=1
-
-#JE-00007
 virtualHostConfig/cache/cachePolicy/cacheStaticFile=15
-
