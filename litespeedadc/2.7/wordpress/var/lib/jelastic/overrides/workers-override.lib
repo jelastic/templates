@@ -28,7 +28,7 @@ function addWorker(){
     addValueToWorkerGroupConfig workerGroupEnabled 1
     addValueToWorkerGroupConfig sourceIP ANY
     addValueToWorkerGroupConfig defaultTargetPort ${TARGET_PORT}
-    addValueToWorkerGroupConfig maxConns 2000
+    addValueToWorkerGroupConfig maxConns 150
     addValueToWorkerGroupConfig initTimeout 300
     addValueToWorkerGroupConfig retryTimeout 5
     addValueToWorkerGroupConfig persistConn 1
