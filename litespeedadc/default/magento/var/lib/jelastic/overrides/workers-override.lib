@@ -1,0 +1,39 @@
+function addWorker(){
+    TARGET_BACKEND=$1;
+    case "${TARGET_BACKEND}" in
+        AJP) 
+            TARGET_TYPE="servlet";
+            TARGET_PORT="8009";
+        ;;
+        FCGI) 
+            TARGET_TYPE=${TARGET_BACKEND,,};
+            TARGET_PORT="3000";
+        ;;
+        LSAPI) 
+            TARGET_TYPE=${TARGET_BACKEND,,};
+            TARGET_PORT="3000";
+        ;; 
+        HTTP|*) 
+            TARGET_TYPE="proxy";
+            TARGET_PORT="80";
+        ;;
+    esac
+    WORKER_GROUP_XPATH="loadBalancerConfig/loadBalancerList/loadBalancer[name = 'cluster${TARGET_BACKEND}']/workerGroupList"
+    LAST_WORKER_GROUP_XPATH="${WORKER_GROUP_XPATH}/workerGroup[last()]"
+    $XMLSTARLET sel -Q -t -v  "${WORKER_GROUP_XPATH}/workerGroup[nodeAddresses = '${host}']" ${LSLB_CONF} && return 0;
+    $XMLSTARLET $ED_CMD -s "${WORKER_GROUP_XPATH}" -t elem -n workerGroup ${LSLB_CONF}
+    addValueToWorkerGroupConfig name ${TARGET_BACKEND,,}-${host//.}
+    addValueToWorkerGroupConfig type ${TARGET_TYPE}
+    addValueToWorkerGroupConfig workerGroupEnabled 1
+    addValueToWorkerGroupConfig sourceIP ANY
+    addValueToWorkerGroupConfig defaultTargetPort ${TARGET_PORT}
+    addValueToWorkerGroupConfig maxConns 2000
+    addValueToWorkerGroupConfig initTimeout 300
+    addValueToWorkerGroupConfig retryTimeout 5
+    addValueToWorkerGroupConfig persistConn 1
+    addValueToWorkerGroupConfig respBuffer 0
+    addValueToWorkerGroupConfig pingInterval 1
+    [ "x${TARGET_BACKEND}" == "xHTTP" ] && addValueToWorkerGroupConfig pingUrl http://${host}:80/pub/health_check.php
+    addValueToWorkerGroupConfig nodeAddresses ${host}
+}
+

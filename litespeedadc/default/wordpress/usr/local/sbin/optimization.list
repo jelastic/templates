@@ -1,0 +1,7 @@
+loadBalancerConfig/loadBalancerList/loadBalancer/strategy=3
+loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/maxConns=150
+loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/retryTimeout=5
+loadBalancerConfig/loadBalancerList/loadBalancer/workerGroupList/workerGroup/pingInterval=1
+virtualHostConfig/cache/cachePolicy/checkPublicCache=1
+virtualHostConfig/cache/cachePolicy/checkPrivateCache=1
+virtualHostConfig/cache/cachePolicy/cacheStaticFile=15
