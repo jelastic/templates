@@ -1,9 +1,11 @@
 #!/bin/bash
 
 DEFAULT_LSWS_CONFIG="/var/www/conf/httpd_config.xml"
-DEFAULT_VIRTUALHOST_CONFIG="/var/www/webroot/vhconf.xml"
 PHPMYADMIN_VIRTUALHOST_CONFIG="/usr/share/phpMyAdmin/vhost.conf"
 ED_CMD="ed --inplace"
+
+[ -f "/var/www/webroot/vhconf.xml" ] && DEFAULT_VIRTUALHOST_CONFIG="/var/www/webroot/vhconf.xml"; 
+[ -f "/var/www/conf/vhconf.xml" ] && DEFAULT_VIRTUALHOST_CONFIG="/var/www/conf/vhconf.xml"; 
 
 cp -f "${DEFAULT_LSWS_CONFIG}" ${DEFAULT_LSWS_CONFIG}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
 cp -f "${DEFAULT_VIRTUALHOST_CONFIG}" ${DEFAULT_VIRTUALHOST_CONFIG}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
@@ -19,3 +21,4 @@ if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
 fi
 
 sudo service lsws reload
+
