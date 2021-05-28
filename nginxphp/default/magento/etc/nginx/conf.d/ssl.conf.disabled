@@ -6,9 +6,6 @@ server {
     listen       443 http2;
     listen       [::]:443 http2;
     server_name  localhost;
-    index  index.php;
-    autoindex off;
-    charset off;
 
     ssl                  on;
     ssl_certificate      /var/lib/jelastic/SSL/jelastic.chain;
