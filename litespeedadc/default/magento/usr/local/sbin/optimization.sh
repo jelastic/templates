@@ -20,23 +20,23 @@ cp -f ${LSLB_CONF} ${LSLB_CONF}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
 /usr/bin/xmlstarlet ${ED_CMD} -d "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']" "${LSLB_CONF}";
 /usr/bin/xmlstarlet ${ED_CMD} -s "loadBalancerConfig/loadBalancerList"  -t elem -n "loadBalancer" \
        -s "loadBalancerConfig/loadBalancerList/loadBalancer[not(name)]" -t elem -n "name" -v "masterIP" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']"  -t elem -n "type" -v "layer7" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']"  -t elem -n "mode" -v "0" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']"  -t elem -n "strategy" -v "0" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']"  -t elem -n "sessionExMethod" -v "25" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']"  -t elem -n "workerGroupList" -v "" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList"  -t elem -n "workerGroup" -v "" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "name" -v "master-ip" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "type" -v "proxy" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "workerGroupEnabled" -v "1" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "sourceIP" -v "ANY" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "defaultTargetPort" -v "80" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "maxConns" -v "150" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "initTimeout" -v "60" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "retryTimeout" -v "5" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "respBuffer" -v "0" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "pingUrl" -v "http://127.0.0.1:80/" \
-       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterENV']/workerGroupList/workerGroup"  -t elem -n "nodeAddresses" -v "127.0.0.1" "${LSLB_CONF}" 2>/dev/null;
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']"  -t elem -n "type" -v "layer7" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']"  -t elem -n "mode" -v "0" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']"  -t elem -n "strategy" -v "0" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']"  -t elem -n "sessionExMethod" -v "25" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']"  -t elem -n "workerGroupList" -v "" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList"  -t elem -n "workerGroup" -v "" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "name" -v "master-ip" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "type" -v "proxy" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "workerGroupEnabled" -v "1" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "sourceIP" -v "ANY" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "defaultTargetPort" -v "80" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "maxConns" -v "150" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "initTimeout" -v "60" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "retryTimeout" -v "5" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "respBuffer" -v "0" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "pingUrl" -v "http://127.0.0.1:80/" \
+       -s "loadBalancerConfig/loadBalancerList/loadBalancer[name = 'masterIP']/workerGroupList/workerGroup"  -t elem -n "nodeAddresses" -v "127.0.0.1" "${LSLB_CONF}" 2>/dev/null;
 
 #Enable webroot redirect       
 /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/contextList" /var/www/conf/jelastic.xml;
