@@ -34,6 +34,6 @@ function addWorker(){
     addValueToWorkerGroupConfig persistConn 1
     addValueToWorkerGroupConfig respBuffer 0
     addValueToWorkerGroupConfig pingInterval 1
-    [ "x${TARGET_BACKEND}" == "xHTTP" ] && addValueToWorkerGroupConfig pingUrl http://${NEW_HOST}:80/?s=test
+    [ "x${TARGET_BACKEND}" == "xHTTP" ] && addValueToWorkerGroupConfig pingUrl http://${NEW_HOST}:80/
     addValueToWorkerGroupConfig nodeAddresses ${NEW_HOST}
 }
