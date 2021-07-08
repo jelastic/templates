@@ -51,4 +51,4 @@ cp -f ${LSLB_CONF} ${LSLB_CONF}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
        -s "virtualHostConfig/contextList/context" -t elem -n "addDefaultCharset" -v "off" "${VH_CONF}" 2>/dev/null;
 
 # Reload service
-sudo service lslb reload
+sudo service lslb restart
