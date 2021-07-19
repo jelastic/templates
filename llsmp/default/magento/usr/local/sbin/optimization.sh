@@ -8,6 +8,7 @@ ED_CMD="ed --inplace"
 
 if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
   /usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/storage/litemage" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
   /usr/bin/xmlstarlet ${ED_CMD} -s "virtualHostConfig/cache/storage" -t elem -n "litemage" -v "1" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
   /usr/bin/xmlstarlet ${ED_CMD} -u "virtualHostConfig/cache/storage/litemage" -v "1" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
 fi
