@@ -1,3 +1,11 @@
+function clearHosts() {
+    for i in ${BACKENDS_LIST[@]}
+    do
+        WORKER_GROUP_XPATH="loadBalancerConfig/loadBalancerList/loadBalancer[name = 'cluster${i}']/workerGroupList"
+        $XMLSTARLET ed --inplace -d "${WORKER_GROUP_XPATH}/workerGroup" ${LSLB_CONF}
+    done
+}
+
 function addWorker(){
     TARGET_BACKEND=$1;
     NEW_HOST=$2;
