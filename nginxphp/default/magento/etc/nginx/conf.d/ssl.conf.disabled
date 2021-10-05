@@ -21,5 +21,4 @@ server {
 
     include /etc/nginx/aliases.conf;
     include /etc/nginx/conf.d/sites_enabled/*.conf;
-    include /etc/nginx/le.conf;
 }
