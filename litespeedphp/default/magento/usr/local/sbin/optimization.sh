@@ -11,12 +11,21 @@ cp -f "${DEFAULT_VIRTUALHOST_CONFIG}" ${DEFAULT_VIRTUALHOST_CONFIG}.backup.$(dat
 
 if [ -e ${DEFAULT_LSWS_CONFIG} ]; then 
 ###JE-51695-Disable compression on cp layer for WP cluster
-  /usr/bin/xmlstarlet $ED_CMD -u "httpServerConfig/tuning/enableGzipCompress" -v "0" ${DEFAULT_LSWS_CONFIG} 2>&1;
+  CURRENT_VALUE=$(xmlstarlet sel -t -v "httpServerConfig/tuning/enableGzipCompress" ${DEFAULT_LSWS_CONFIG})
+  if [ "x${CURRENT_VALUE}" != "x0" ]; then
+    /usr/bin/xmlstarlet $ED_CMD -u "httpServerConfig/tuning/enableGzipCompress" -v "0" ${DEFAULT_LSWS_CONFIG} 2>&1;
+  fi
 fi
 
 if [ -e ${DEFAULT_VIRTUALHOST_CONFIG} ]; then
-  /usr/bin/xmlstarlet $ED_CMD -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
-  /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/storage/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  CURRENT_VALUE=$(xmlstarlet sel -t -v "virtualHostConfig/docRoot" ${DEFAULT_VIRTUALHOST_CONFIG})
+  if [ "x${CURRENT_VALUE}" != "x\$VH_ROOT/ROOT/pub/" ]; then
+    /usr/bin/xmlstarlet $ED_CMD -u "virtualHostConfig/docRoot" -v "\$VH_ROOT/ROOT/pub/" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  fi
+  CURRENT_VALUE=$(xmlstarlet sel -t -v "virtualHostConfig/cache/storage/cacheStorePath" ${DEFAULT_VIRTUALHOST_CONFIG})
+  if [ -n "${CURRENT_VALUE}" ]; then
+    /usr/bin/xmlstarlet ${ED_CMD} -d "virtualHostConfig/cache/storage/cacheStorePath" "${DEFAULT_VIRTUALHOST_CONFIG}" 2>/dev/null;
+  fi
 fi
 
 sudo jem service restart
