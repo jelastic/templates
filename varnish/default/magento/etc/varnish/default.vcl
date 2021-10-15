@@ -15,6 +15,7 @@ acl purge {
 }
 
 sub vcl_recv {
+    set req.backend_hint = myclust.backend();
     if (req.restarts > 0) {
         set req.hash_always_miss = true;
     }
