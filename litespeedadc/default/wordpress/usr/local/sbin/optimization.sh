@@ -20,4 +20,4 @@ cp -f ${LSLB_CONF} ${LSLB_CONF}.backup.$(date +%d-%m-%Y.%H:%M:%S.%N) || exit 1
 /usr/bin/xmlstarlet ${ED_CMD} -s "virtualHostConfig/cache/cachePolicy"  -t elem -n "cacheStaticFile" -v "15" "${VH_CONF}" 2>/dev/null;
 
 # Reload service
-sudo service lslb reload
+jem service reload
