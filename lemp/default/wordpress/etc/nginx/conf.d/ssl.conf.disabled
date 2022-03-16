@@ -20,6 +20,5 @@ server {
     ssl_session_cache shared:SSL:10m;
 
     include /etc/nginx/aliases.conf;
-    include /etc/nginx/conf.d/SITES_ENABLED/*.conf;
-    include /etc/nginx/le.conf;
+    include /etc/nginx/conf.d/sites-enabled/*.conf;
 }
