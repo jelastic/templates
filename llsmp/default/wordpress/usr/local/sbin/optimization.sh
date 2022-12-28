@@ -8,3 +8,5 @@ cp -f "${DEFAULT_LSWS_CONFIG}" ${DEFAULT_LSWS_CONFIG}.backup.$(date +%d-%m-%Y.%H
 /usr/bin/xmlstarlet $ED_CMD -u "httpServerConfig/extProcessorList/extProcessor/memSoftLimit" -v "10240M" ${DEFAULT_LSWS_CONFIG} 2>&1;
 /usr/bin/xmlstarlet $ED_CMD -u "httpServerConfig/extProcessorList/extProcessor/memHardLimit" -v "10240M" ${DEFAULT_LSWS_CONFIG} 2>&1;
 
+# Reload service
+sudo jem service restart
