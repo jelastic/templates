@@ -21,7 +21,7 @@ onInstall:
       
   - cmd[${globals.TARGET_NODES}]: |-
       rm -rf /tmp/templates;
-      wget '${globals.CONFIGS_PATH}/archive/master.zip' -O /tmp/master.zip;
+      wget '${globals.CONFIGS_PATH}/archive/JE-71578.zip' -O /tmp/master.zip;
       unzip /tmp/master.zip templates-master/${this.nodeType}/default/${globals.OPTIMIZATION}/* -d /tmp/templates >> /var/log/run.log;
       chown -R 700:700 /tmp/templates >> /var/log/run.log;
       rsync -azP /tmp/templates/templates-master/${this.nodeType}/default/${globals.OPTIMIZATION}/* / >> /var/log/run.log 2>&1;
